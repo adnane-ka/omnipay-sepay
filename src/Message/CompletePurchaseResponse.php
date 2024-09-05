@@ -8,31 +8,23 @@ class CompletePurchaseResponse extends AbstractResponse
 {
     public function isSuccessful()
     {
-        // Check if the transaction was successfully completed based on the response data
-        return isset($this->data['status']) && $this->data['status'] === 'completed';
+        // @see https://sepay.vn/lap-trinh-cong-thanh-toan.html
+        return 
+        isset($this->data['webhookResponse']['id'])
+        && isset($this->data['webhookResponse']['transferAmount'])
+        && $this->data['webhookResponse']['transferAmount'] == $this->data['amount']
+        && $this->data['webhookResponse']['accountNumber'] == $this->data['bankAccountNumber']
+        && $this->data['webhookResponse']['transferType'] == 'in';
     }
 
     public function getTransactionReference()
     {
-        // Return the transaction reference from the response data
-        return isset($this->data['transaction_id']) ? $this->data['transaction_id'] : null;
+        // @see https://sepay.vn/lap-trinh-cong-thanh-toan.html
+        return $this->data['webhookResponse']['referenceCode'];
     }
 
     public function getMessage()
     {
-        // Return any error or success message from the response
-        return isset($this->data['message']) ? $this->data['message'] : null;
-    }
-
-    public function isPending()
-    {
-        // Check if the transaction is still pending
-        return isset($this->data['status']) && $this->data['status'] === 'pending';
-    }
-
-    public function isFailed()
-    {
-        // Check if the transaction failed
-        return isset($this->data['status']) && $this->data['status'] === 'failed';
+        return $this->isSuccessful() ?: 'No transaction could be found wiht that Order ID for this Amount.';
     }
 }

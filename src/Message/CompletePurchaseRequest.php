@@ -6,33 +6,38 @@ use Omnipay\Common\Message\AbstractRequest;
 
 class CompletePurchaseRequest extends AbstractRequest
 {
+    public function setTransactionId($value)
+    {
+        return $this->setParameter('transactionId', $value);
+    }
+
+    public function setAmount($value)
+    {
+        return $this->setParameter('amount', $value);
+    }
+
+    public function setWebhookResponse($value)
+    {
+        return $this->setParameter('webhookResponse', $value);
+    }
+
+    public function setBankAccountNumber($value)
+    {
+        return $this->setParameter('bankAccountNumber', $value);
+    }
+
     public function getData()
     {
-        // You typically need the transaction reference or ID to complete the purchase
         return [
-            'apiKey' => $this->getParameter('apiKey'),
-            'transaction_id' => $this->getTransactionReference(),
+            'transactionId' => $this->getParameter('transactionId'),
+            'amount' => $this->getParameter('amount'), 
+            'webhookResponse' => $this->getParameter('webhookResponse'), 
+            'bankAccountNumber' => $this->getParameter('bankAccountNumber')
         ];
     }
 
     public function sendData($data)
     {
-        // Send a request to Sepay's API to check the transaction status
-        $httpResponse = $this->httpClient->post('https://sepay.example.com/transaction/status', null, json_encode($data))->send();
-
-        // Parse the response and return it
-        return $this->response = new CompletePurchaseResponse($this, $httpResponse->json());
-    }
-
-    public function getTransactionReference()
-    {
-        // Return the transaction reference parameter
-        return $this->getParameter('transactionReference');
-    }
-
-    public function setTransactionReference($value)
-    {
-        // Set the transaction reference parameter
-        return $this->setParameter('transactionReference', $value);
+        return $this->response = new CompletePurchaseResponse($this, $data);
     }
 }

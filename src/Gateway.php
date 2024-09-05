@@ -52,11 +52,17 @@ class Gateway extends AbstractGateway
         return $this->getParameter('bankName');
     }
 
+    /**
+     * @return GenerateQrImageRequest
+    */
     public function purchase(array $parameters = [])
     {
         return $this->createRequest(GenerateQrImageRequest::class, $parameters);
     }
 
+    /**
+     * @return CompletePurchaseRequest
+    */
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest(CompletePurchaseRequest::class, $parameters);

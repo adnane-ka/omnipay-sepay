@@ -17,11 +17,14 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
         return isset($this->data['redirectUrl']);
     }
 
+    /**
+     * Render URL for the checkout page
+    */
     public function getRedirectUrl()
     {
         return 
         $this->data['redirectUrl'] 
-        . '?qrSrc=' . urlencode($this->data['qrUrl']) 
+        .'?qrSrc=' . urlencode($this->data['qrUrl']) 
         .'&completeUrl='. urlencode($this->data['returnUrl'])
         .'&transactionId='. $this->data['transactionId'];
     }
