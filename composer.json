@@ -1,0 +1,29 @@
+{
+    "name": "adnane-ka/omnipay-sepay",
+    "description": "Sepay gateway for Omnipay payment processing library",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AdnaneKa\\OmnipaySepay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adnane Kadri",
+            "email": "dannykadri0@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "omnipay/common": "^3.3",
+        "symfony/http-client": "^7.1",
+        "php-http/httplug": "^2.4",
+        "nyholm/psr7": "^1.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
