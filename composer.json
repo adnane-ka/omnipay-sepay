@@ -15,6 +15,7 @@
         }
     ],
     "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "omnipay/common": "^3.3",
         "symfony/http-client": "^7.1",
