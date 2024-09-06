@@ -18,12 +18,12 @@
     "prefer-stable": true,
     "require": {
         "omnipay/common": "^3.3",
-        "symfony/http-client": "^7.1",
-        "php-http/httplug": "^2.4",
-        "nyholm/psr7": "^1.8",
-        "php-http/curl-client": "^2.3",
-        "guzzlehttp/psr7": "^2.7",
-        "php-http/message": "^1.16"
+        "symfony/http-client": "^6.2",   
+        "php-http/httplug": "^2.3",       
+        "nyholm/psr7": "^1.8",            
+        "php-http/curl-client": "^2.1",   
+        "guzzlehttp/psr7": "^2.4",        
+        "php-http/message": "^1.0"
     },
     "config": {
         "allow-plugins": {
